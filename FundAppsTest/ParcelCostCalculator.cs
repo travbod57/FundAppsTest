@@ -5,9 +5,9 @@ namespace FundAppsTest
 {
     public class ParcelCostCalculator
     {
-        public Order CreateOrder(List<Item> items)
+        public Order CreateOrder(List<Item> items, bool speedyDelivery = false)
         {
-            Order order = new Order();
+            Order order = new Order(speedyDelivery);
 
             foreach (var item in items)
             {
