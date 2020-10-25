@@ -18,10 +18,11 @@ namespace UnitTests
 
             ParcelCostCalculator calculator = new ParcelCostCalculator();
 
-            List<Parcel> parcels = calculator.SizeParcels(items);
+            Order order = calculator.CreateOrder(items);
 
-            Assert.AreEqual(1, parcels.Count);
-            Assert.IsInstanceOfType(parcels[0], typeof(SmallParcel));
+            Assert.AreEqual(3.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(SmallParcel));
         }
 
         [DataTestMethod]
@@ -38,10 +39,11 @@ namespace UnitTests
 
             ParcelCostCalculator calculator = new ParcelCostCalculator();
 
-            List<Parcel> parcels = calculator.SizeParcels(items);
+            Order order = calculator.CreateOrder(items);
 
-            Assert.AreEqual(1, parcels.Count);
-            Assert.IsInstanceOfType(parcels[0], typeof(MediumParcel));
+            Assert.AreEqual(8.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(MediumParcel));
         }
 
         [DataTestMethod]
@@ -58,10 +60,11 @@ namespace UnitTests
 
             ParcelCostCalculator calculator = new ParcelCostCalculator();
 
-            List<Parcel> parcels = calculator.SizeParcels(items);
+            Order order = calculator.CreateOrder(items);
 
-            Assert.AreEqual(1, parcels.Count);
-            Assert.IsInstanceOfType(parcels[0], typeof(LargeParcel));
+            Assert.AreEqual(15.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(LargeParcel));
         }
 
         [DataTestMethod]
@@ -78,10 +81,11 @@ namespace UnitTests
 
             ParcelCostCalculator calculator = new ParcelCostCalculator();
 
-            List<Parcel> parcels = calculator.SizeParcels(items);
+            Order order = calculator.CreateOrder(items);
 
-            Assert.AreEqual(1, parcels.Count);
-            Assert.IsInstanceOfType(parcels[0], typeof(ExtraLargeParcel));
+            Assert.AreEqual(25.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(ExtraLargeParcel));
         }
 
         [TestMethod]
@@ -97,13 +101,14 @@ namespace UnitTests
 
             ParcelCostCalculator calculator = new ParcelCostCalculator();
 
-            List<Parcel> parcels = calculator.SizeParcels(items);
+            Order order = calculator.CreateOrder(items);
 
-            Assert.AreEqual(4, parcels.Count);
-            Assert.IsInstanceOfType(parcels[0], typeof(SmallParcel));
-            Assert.IsInstanceOfType(parcels[1], typeof(MediumParcel));
-            Assert.IsInstanceOfType(parcels[2], typeof(LargeParcel));
-            Assert.IsInstanceOfType(parcels[3], typeof(ExtraLargeParcel));
+            Assert.AreEqual(51.00M, order.TotalCost);
+            Assert.AreEqual(4, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(SmallParcel));
+            Assert.IsInstanceOfType(order.Parcels[1], typeof(MediumParcel));
+            Assert.IsInstanceOfType(order.Parcels[2], typeof(LargeParcel));
+            Assert.IsInstanceOfType(order.Parcels[3], typeof(ExtraLargeParcel));
         }
     }
 }

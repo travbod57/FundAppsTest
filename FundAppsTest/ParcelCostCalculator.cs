@@ -5,16 +5,16 @@ namespace FundAppsTest
 {
     public class ParcelCostCalculator
     {
-        public List<Parcel> SizeParcels(List<Item> items)
+        public Order CreateOrder(List<Item> items)
         {
-            List<Parcel> parcels = new List<Parcel>();
+            Order order = new Order();
 
             foreach (var item in items)
             {
-                parcels.Add(ParcelFactory.GetParcel(item));
+                order.Parcels.Add(ParcelFactory.GetParcel(item));
             }
 
-            return parcels;
+            return order;
         }
     }
 }
