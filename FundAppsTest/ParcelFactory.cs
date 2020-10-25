@@ -6,22 +6,28 @@ namespace FundAppsTest
     {
         public static Parcel GetParcel(Item item)
         {
+            Parcel parcel;
+
             if (item.Height < 10 && item.Width < 10 && item.Depth < 10)
             {
-                return new SmallParcel();
+                parcel = new SmallParcel();
             }
             else if (item.Height < 50 && item.Width < 50 && item.Depth < 50)
             {
-                return new MediumParcel();
+                parcel = new MediumParcel();
             }
             else if (item.Height < 100 && item.Width < 100 && item.Depth < 100)
             {
-                return new LargeParcel();
+                parcel = new LargeParcel();
             }
             else
             {
-                return new ExtraLargeParcel();
+                parcel = new ExtraLargeParcel();
             }
+
+            parcel.SetExtraWeightCost(item.Weight);
+
+            return parcel;
         }
     }
 }

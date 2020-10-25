@@ -5,6 +5,9 @@
         public SmallParcel()
         {
             Cost = 3.00M;
+            MaxWeight = 1;
         }
+
+        public override int MaxWeight { get; set; }
     }
 }

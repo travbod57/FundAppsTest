@@ -25,6 +25,14 @@ namespace FundAppsTest
             }
         }
 
+        public decimal ExtraWeightCost
+        {
+            get
+            {
+                return Parcels.Sum(p => p.ExtraWeightCost);
+            }
+        }
+
         public decimal SpeedyDeliveryCost
         {
             get
@@ -44,11 +52,11 @@ namespace FundAppsTest
             {
                 if (IsSpeedyDelivery)
                 {
-                    return ParcelCosts * 2;
+                    return (ParcelCosts * 2) + ExtraWeightCost;
                 }
                 else
                 {
-                    return ParcelCosts;
+                    return ParcelCosts + ExtraWeightCost;
                 }
             }
         }
