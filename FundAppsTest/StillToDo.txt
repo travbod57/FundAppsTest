@@ -1,7 +1,7 @@
 ﻿Still To Do
 ===========
 
-In respect of the test I only allowed myself the 2 hours as instructed. I managed the first 4 steps comfortably within the time (ableit going at some pace!) 
+In respect of the test I only allowed myself the 2 hours as instructed. I managed the first 4 steps comfortably within the time (albeit going at some pace!) 
 but I was not going to complete the 5th step in the allocated time so here are my notes on how I might do it.
 
 1) Create IPromotion.cs
