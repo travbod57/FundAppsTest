@@ -1,0 +1,24 @@
+﻿Still To Do
+===========
+
+In respect of the test I only allowed myself the 2 hours as instructed. I managed the first 4 steps comfortably within the time (ableit going at some pace!) 
+but I was not going to complete the 5th step in the allocated time so here are my notes on how I might do it.
+
+1) Create IPromotion.cs
+
+There are a few kinds of promotions listed and there may be more to come, so I would create an interface such as IPromotion and create a concrete class
+for each promotion and have it implement this interface. The interface would have a method called "decimal Apply(List<Parcel> parcels)" and each concrete class would crunch
+the list to work out the discount.
+
+2) DiscountEngine.cs / IDisountEngine.cs
+
+I would also need an engine with a constructor accepting a List<IPromotion>, and a method called "decimal Calculate(List<Parcel> parcels)". The "Calculate" method would loop through the 
+IPromotions each calculating the discount for the parcels (storing the discount amount for each promotion in an array as it iterated). Once this work 
+had completed I could then return the largest discount from the array back to ParcelCostCalculator.cs and deduct the amount from the total cost of the order. 
+
+3) ParcelCostCalculator.cs constructor
+
+I would then add a parameter to the ParcelCostCalculator.cs constructor of type "IDisountEngine", save it into a private readonly property, and call "discountEngine.Calculate(parcels)" after the parcel list had been built.
+
+
+
