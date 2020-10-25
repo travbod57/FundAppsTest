@@ -1,12 +1,12 @@
 ﻿namespace FundAppsTest.Parcels
 {
-    public class MediumParcel : Parcel
+    public class HeavyParcel : Parcel
     {
-        public MediumParcel()
+        public HeavyParcel()
         {
-            Cost = 8.00M;
-            MaxWeight = 3;
-            OverweightChargePerKg = 2;
+            Cost = 50.00M;
+            MaxWeight = 50;
+            OverweightChargePerKg = 1;
         }
 
         public override int MaxWeight { get; set; }

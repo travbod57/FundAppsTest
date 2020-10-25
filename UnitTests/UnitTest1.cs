@@ -8,6 +8,59 @@ namespace UnitTests
     [TestClass]
     public class UnitTest1
     {
+        [DataTestMethod]
+        [DataRow(5, 5, 5)]
+        [DataRow(30, 30, 30)]
+        [DataRow(80, 80, 80)]
+        [DataRow(120, 120, 120)]
+        [TestMethod]
+        public void CreateOrder_OneHeavyItem_OneHeavyParcel_InsideWeight(int height, int width, int depth)
+        {
+            List<Item> items = new List<Item>()
+            {
+                new Item(height, width, depth, weight: 30, isHeavyItem: true)
+            };
+
+            ParcelCostCalculator calculator = new ParcelCostCalculator();
+
+            Order order = calculator.CreateOrder(items);
+
+            Assert.IsFalse(order.IsSpeedyDelivery);
+            Assert.AreEqual(0.00M, order.ExtraWeightCost);
+            Assert.AreEqual(0.00M, order.SpeedyDeliveryCost);
+            Assert.AreEqual(50.00M, order.ParcelCosts);
+            Assert.AreEqual(50.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(HeavyParcel));
+        }
+
+        [DataTestMethod]
+        [DataRow(5, 5, 5)]
+        [DataRow(30, 30, 30)]
+        [DataRow(80, 80, 80)]
+        [DataRow(120, 120, 120)]
+        [TestMethod]
+        public void CreateOrder_OneHeavyItem_OneHeavyParcel_OutsideWeight(int height, int width, int depth)
+        {
+            List<Item> items = new List<Item>()
+            {
+                new Item(height, width, depth, weight: 55, isHeavyItem: true)
+            };
+
+            ParcelCostCalculator calculator = new ParcelCostCalculator();
+
+            Order order = calculator.CreateOrder(items);
+
+            Assert.IsFalse(order.IsSpeedyDelivery);
+            Assert.AreEqual(5.00M, order.ExtraWeightCost);
+            Assert.AreEqual(0.00M, order.SpeedyDeliveryCost);
+            Assert.AreEqual(50.00M, order.ParcelCosts);
+            Assert.AreEqual(55.00M, order.TotalCost);
+            Assert.AreEqual(1, order.Parcels.Count);
+            Assert.IsInstanceOfType(order.Parcels[0], typeof(HeavyParcel));
+        }
+
+
         [TestMethod]
         public void CreateOrder_OneSmallItem_OneSmallParcel_InsideWeight()
         {

@@ -8,7 +8,11 @@ namespace FundAppsTest
         {
             Parcel parcel;
 
-            if (item.Height < 10 && item.Width < 10 && item.Depth < 10)
+            if (item.IsHeavyItem)
+            {
+                parcel = new HeavyParcel();
+            }
+            else if (item.Height < 10 && item.Width < 10 && item.Depth < 10)
             {
                 parcel = new SmallParcel();
             }
